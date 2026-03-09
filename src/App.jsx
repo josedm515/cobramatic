@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { supabase } from './supabaseClient'
+import Auth from './Auth'
 import Landing from './Landing'
 import './App.css'
 
@@ -31,6 +32,10 @@ Quedo pendiente de tu respuesta. Gracias.`
 };
 
 function App() {
+  // Estado de autenticación
+  const [userCode, setUserCode] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
   // Estado para mostrar/ocultar landing
   const [mostrarApp, setMostrarApp] = useState(false);
   
@@ -50,10 +55,24 @@ function App() {
   // Estados para historial expandido
   const [historialExpandido, setHistorialExpandido] = useState({});
 
-  // Cargar clientes de Supabase al iniciar
+  // Verificar si ya hay un código guardado
   useEffect(() => {
-    cargarClientes();
+    const savedCode = localStorage.getItem('cobramatic_user_code');
+    if (savedCode) {
+      setUserCode(savedCode);
+      setIsAuthenticated(true);
+      setMostrarApp(true); // Si ya está autenticado, mostrar app directamente
+    } else {
+      setCargando(false); // Si no hay código, dejar de cargar
+    }
   }, []);
+
+  // Cargar clientes solo si está autenticado
+  useEffect(() => {
+    if (isAuthenticated && userCode) {
+      cargarClientes();
+    }
+  }, [isAuthenticated, userCode]);
 
   // Función para cargar clientes desde Supabase
   const cargarClientes = async () => {
@@ -62,6 +81,7 @@ function App() {
       const { data, error } = await supabase
         .from('clientes')
         .select('*')
+        .eq('user_code', userCode) // Filtrar por código de usuario
         .order('created_at', { ascending: false });
       
       if (error) throw error;
@@ -100,6 +120,7 @@ function App() {
     }
     
     const nuevoCliente = {
+      user_code: userCode, // Asociar con el código del usuario
       telefono,
       nombre,
       monto,
@@ -256,6 +277,29 @@ function App() {
     }));
   };
 
+  // Cerrar sesión
+  const handleLogout = () => {
+    if (confirm('¿Seguro que quieres cerrar sesión?')) {
+      localStorage.removeItem('cobramatic_user_code');
+      setUserCode(null);
+      setIsAuthenticated(false);
+      setMostrarApp(false);
+      setClientes([]);
+    }
+  };
+
+  // Manejar login
+  const handleLogin = (code) => {
+    setUserCode(code);
+    setIsAuthenticated(true);
+    setMostrarApp(true);
+  };
+
+  // Mostrar pantalla de login si no está autenticado
+  if (!isAuthenticated) {
+    return <Auth onLogin={handleLogin} />;
+  }
+
   if (cargando) {
     return (
       <div className="container">
@@ -275,8 +319,28 @@ function App() {
 
   return (
     <div className="container">
-      <h1>💰 CobraMatic</h1>
-      <p className="subtitle">Gestiona tus recordatorios de cobro por WhatsApp</p>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <div>
+          <h1>💰 CobraMatic</h1>
+          <p className="subtitle">Gestiona tus recordatorios de cobro por WhatsApp</p>
+        </div>
+        <button 
+          onClick={handleLogout}
+          style={{
+            padding: '10px 20px',
+            background: '#f5f5f5',
+            border: '1px solid #ddd',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontSize: '0.9em',
+            transition: 'background 0.2s'
+          }}
+          onMouseOver={(e) => e.target.style.background = '#e8e8e8'}
+          onMouseOut={(e) => e.target.style.background = '#f5f5f5'}
+        >
+          🚪 Cerrar sesión
+        </button>
+      </div>
       
       {/* Dashboard de Métricas */}
       {clientes.filter(c => !c.pagado).length > 0 && (
