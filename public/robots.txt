@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /
+Allow: /
 
-# Sitio temporalmente bloqueado para mantenimiento
+Sitemap: https://cobramatic-app.vercel.app/sitemap.xml
