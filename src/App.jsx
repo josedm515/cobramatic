@@ -36,7 +36,8 @@ function App() {
   const [userCode, setUserCode] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   
-  // Estado para mostrar/ocultar landing
+  // Estado para controlar el flujo: landing → login → app
+  const [mostrarLanding, setMostrarLanding] = useState(true);
   const [mostrarApp, setMostrarApp] = useState(false);
   
   // Estados del formulario
@@ -58,10 +59,16 @@ function App() {
   // Verificar si ya hay un código guardado
   useEffect(() => {
     const savedCode = localStorage.getItem('cobramatic_user_code');
+    const hasSeenLanding = localStorage.getItem('cobramatic_seen_landing');
+    
     if (savedCode) {
       setUserCode(savedCode);
       setIsAuthenticated(true);
-      setMostrarApp(true); // Si ya está autenticado, mostrar app directamente
+      // Si ya vio el landing antes, saltarlo
+      if (hasSeenLanding) {
+        setMostrarLanding(false);
+        setMostrarApp(true);
+      }
     } else {
       setCargando(false); // Si no hay código, dejar de cargar
     }
@@ -293,13 +300,29 @@ function App() {
     setUserCode(code);
     setIsAuthenticated(true);
     setMostrarApp(true);
+    // Marcar que ya vio el landing
+    localStorage.setItem('cobramatic_seen_landing', 'true');
+  };
+  
+  // Manejar cuando hace clic en "Empezar" en el landing
+  const handleIniciarDesdeLanding = () => {
+    setMostrarLanding(false);
+    localStorage.setItem('cobramatic_seen_landing', 'true');
   };
 
-  // Mostrar pantalla de login si no está autenticado
+  // FLUJO: Landing → Login → App
+  
+  // 1. Mostrar Landing primero (si no lo ha visto)
+  if (mostrarLanding && !isAuthenticated) {
+    return <Landing onIniciar={handleIniciarDesdeLanding} />;
+  }
+
+  // 2. Mostrar Login (si no está autenticado y ya vio landing)
   if (!isAuthenticated) {
     return <Auth onLogin={handleLogin} />;
   }
 
+  // 3. Mostrar pantalla de carga (mientras carga datos)
   if (cargando) {
     return (
       <div className="container">
@@ -312,10 +335,7 @@ function App() {
     );
   }
 
-  // Mostrar Landing Page primero
-  if (!mostrarApp) {
-    return <Landing onIniciar={() => setMostrarApp(true)} />;
-  }
+  // 4. Mostrar App principal
 
   return (
     <div className="container">
