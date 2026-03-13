@@ -1,31 +1,65 @@
 import { useState } from 'react';
+import { supabase } from './supabaseClient';
 import './Auth.css';
 
 function Auth({ onLogin }) {
   const [userCode, setUserCode] = useState('');
   const [isCreating, setIsCreating] = useState(false);
   const [error, setError] = useState('');
+  const [codigoGenerado, setCodigoGenerado] = useState('');
+  const [mostrarCodigo, setMostrarCodigo] = useState(false);
 
-  const handleSubmit = (e) => {
+  // Generar código único
+  const generarCodigoUnico = async () => {
+    // Generar código aleatorio
+    const timestamp = Date.now().toString(36).toUpperCase();
+    const random = Math.random().toString(36).substring(2, 8).toUpperCase();
+    const codigo = `${timestamp}${random}`;
+    
+    // Verificar que no existe (aunque es casi imposible)
+    const { data } = await supabase
+      .from('clientes')
+      .select('user_code')
+      .eq('user_code', codigo)
+      .limit(1);
+    
+    // Si por alguna razón existe, generar otro
+    if (data && data.length > 0) {
+      return generarCodigoUnico(); // Recursivo hasta encontrar uno único
+    }
+    
+    return codigo;
+  };
+
+  // Crear nueva cuenta con código auto-generado
+  const handleCrearCuenta = async () => {
+    try {
+      setError('');
+      const codigo = await generarCodigoUnico();
+      setCodigoGenerado(codigo);
+      setMostrarCodigo(true);
+    } catch (err) {
+      setError('Error al generar código. Intenta de nuevo.');
+      console.error(err);
+    }
+  };
+
+  // Confirmar y usar el código generado
+  const handleConfirmarCodigo = () => {
+    localStorage.setItem('cobramatic_user_code', codigoGenerado);
+    onLogin(codigoGenerado);
+  };
+
+  // Login con código existente
+  const handleLogin = (e) => {
     e.preventDefault();
     
     if (!userCode.trim()) {
-      setError('Por favor ingresa un código');
+      setError('Por favor ingresa tu código de acceso');
       return;
     }
 
-    // Validar formato: solo letras, números, guiones
-    if (!/^[a-zA-Z0-9-_]+$/.test(userCode)) {
-      setError('Solo letras, números, guiones y guión bajo');
-      return;
-    }
-
-    if (userCode.length < 4) {
-      setError('El código debe tener al menos 4 caracteres');
-      return;
-    }
-
-    // Guardar en localStorage y notificar al parent
+    // Guardar y notificar al parent
     localStorage.setItem('cobramatic_user_code', userCode.toUpperCase());
     onLogin(userCode.toUpperCase());
   };
@@ -37,13 +71,53 @@ function Auth({ onLogin }) {
         <h1>CobraMatic</h1>
         <p className="auth-subtitle">Sistema de Recordatorios de Cobro</p>
 
-        {!isCreating ? (
+        {/* Mostrar código generado */}
+        {mostrarCodigo ? (
+          <>
+            <h2>✅ Tu código de acceso</h2>
+            <div className="codigo-generado">
+              <div className="codigo-box">
+                {codigoGenerado}
+              </div>
+            </div>
+            
+            <div className="auth-warning">
+              ⚠️ <strong>¡IMPORTANTE!</strong><br/>
+              Guarda este código en un lugar seguro.<br/>
+              Lo necesitarás para acceder siempre.
+            </div>
+
+            <div className="auth-info">
+              📝 <strong>Recomendación:</strong><br/>
+              • Toma una captura de pantalla<br/>
+              • Guárdalo en tus notas<br/>
+              • Envíatelo por email
+            </div>
+
+            <button 
+              onClick={handleConfirmarCodigo}
+              className="auth-button"
+            >
+              Continuar con este código
+            </button>
+
+            <button 
+              onClick={() => {
+                setMostrarCodigo(false);
+                setCodigoGenerado('');
+              }}
+              className="auth-link"
+            >
+              ← Generar otro código
+            </button>
+          </>
+        ) : !isCreating ? (
           <>
             <h2>Ingresa tu código de acceso</h2>
-            <form onSubmit={handleSubmit} className="auth-form">
+            <form onSubmit={handleLogin} className="auth-form">
               <input
                 type="text"
-                placeholder="Ej: JUAN2024"
+                placeholder="Ej: ABC123XYZ"
                 value={userCode}
                 onChange={(e) => {
                   setUserCode(e.target.value);
@@ -65,42 +139,29 @@ function Auth({ onLogin }) {
               onClick={() => setIsCreating(true)}
               className="auth-button-secondary"
             >
-              Crear nuevo código
+              Crear nueva cuenta
             </button>
           </>
         ) : (
           <>
-            <h2>Crea tu código de acceso</h2>
+            <h2>Crear nueva cuenta</h2>
             <p className="auth-info">
-              📌 Usa algo fácil de recordar (ej: JUAN2024, NEGOCIO123)
+              🔒 Te generaremos un <strong>código único y seguro</strong> para acceder a tu cuenta.
             </p>
-            <p className="auth-warning">
-              ⚠️ <strong>Guarda este código.</strong> Lo necesitarás para acceder siempre.
+            <p className="auth-info">
+              💡 No necesitas recordar contraseñas complicadas, solo guarda tu código en un lugar seguro.
             </p>
             
-            <form onSubmit={handleSubmit} className="auth-form">
-              <input
-                type="text"
-                placeholder="Tu código de acceso"
-                value={userCode}
-                onChange={(e) => {
-                  setUserCode(e.target.value);
-                  setError('');
-                }}
-                className="auth-input"
-                autoFocus
-              />
-              {error && <p className="auth-error">{error}</p>}
-              
-              <button type="submit" className="auth-button">
-                Crear y Entrar
-              </button>
-            </form>
+            <button 
+              onClick={handleCrearCuenta}
+              className="auth-button"
+            >
+              🎲 Generar mi código de acceso
+            </button>
 
             <button 
               onClick={() => {
                 setIsCreating(false);
-                setUserCode('');
                 setError('');
               }}
               className="auth-link"
