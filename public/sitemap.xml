@@ -2,32 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://cobramatic-app.vercel.app/</loc>
-    <priority>1.0</priority>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://cobramatic-app.vercel.app/como-cobrar-clientes-whatsapp.html</loc>
-    <priority>0.8</priority>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cobramatic-app.vercel.app/plantillas-mensajes-cobro-whatsapp.html</loc>
-    <priority>0.8</priority>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cobramatic-app.vercel.app/software-cobranza-gratis.html</loc>
-    <priority>0.8</priority>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cobramatic-app.vercel.app/herramientas-freelancers.html</loc>
-    <priority>0.8</priority>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://cobramatic-app.vercel.app/preguntas-frecuentes-cobranza-whatsapp.html</loc>
-    <priority>0.8</priority>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
