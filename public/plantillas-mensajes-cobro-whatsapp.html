@@ -4,168 +4,238 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>15 Plantillas de Mensajes para Cobrar por WhatsApp (Gratis) | CobraMatic</title>
-    <meta name="description" content="Plantillas gratuitas de mensajes para cobrar por WhatsApp. Copia y personaliza estos mensajes profesionales para recuperar tus pagos.">
-    <meta name="keywords" content="plantillas cobro whatsapp, mensajes cobro whatsapp, ejemplos recordatorios pago, templates cobranza">
+    <meta name="description" content="Plantillas gratuitas de mensajes para cobrar por WhatsApp. Copia y personaliza estos mensajes profesionales para gestionar tus cobros con facilidad.">
+    <meta name="keywords" content="plantillas cobro whatsapp, mensajes cobro whatsapp, ejemplos recordatorios pago, templates cobranza whatsapp">
     <link rel="canonical" href="https://cobramatic-app.vercel.app/plantillas-mensajes-cobro-whatsapp">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f9f9f9;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #4f46e5;
+            --accent: #06b6d4;
+            --text: #1e1b4b;
+            --muted: #6b7280;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-        }
+        body { font-family: 'Inter', sans-serif; line-height: 1.7; color: var(--text); background: var(--bg); }
+        .container { max-width: 820px; margin: 0 auto; padding: 0 20px 60px; background: var(--white); }
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            margin: -20px -20px 40px -20px;
+            background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+            color: white; padding: 56px 32px 48px; text-align: center; margin-bottom: 48px;
+            position: relative; overflow: hidden;
         }
-        h1 { font-size: 2.2em; margin-bottom: 10px; }
-        h2 { color: #667eea; margin: 30px 0 15px; font-size: 1.5em; }
-        h3 { color: #555; margin: 20px 0 10px; }
-        p { margin-bottom: 15px; }
+        header::before {
+            content: ''; position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        header h1 { font-family: 'Sora', sans-serif; font-size: 2.1em; font-weight: 700; margin-bottom: 12px; position: relative; }
+        header p { opacity: 0.9; position: relative; }
+        h2 { font-family: 'Sora', sans-serif; color: var(--primary); margin: 44px 0 16px; font-size: 1.4em; font-weight: 700; padding-bottom: 10px; border-bottom: 2px solid var(--border); }
+        h3 { color: var(--text); margin: 20px 0 8px; font-size: 1.05em; font-weight: 600; }
+        p { margin-bottom: 14px; color: #374151; }
+        ul, ol { margin: 12px 0 16px 24px; }
+        li { margin: 8px 0; color: #374151; }
+        .como-usar {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-left: 4px solid #22c55e;
+            padding: 20px 24px;
+            border-radius: 0 10px 10px 0;
+            margin: 0 0 36px;
+        }
+        .como-usar strong { color: #15803d; }
+        .como-usar ol { margin: 10px 0 0 20px; }
+        .categorias { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0 32px; }
+        .cat-badge {
+            padding: 8px 16px; border-radius: 24px; font-size: 0.85em;
+            font-weight: 600; font-family: 'Sora', sans-serif; cursor: default;
+        }
+        .cat-green { background: #d1fae5; color: #065f46; }
+        .cat-yellow { background: #fef3c7; color: #92400e; }
+        .cat-red { background: #fee2e2; color: #991b1b; }
+        .cat-blue { background: #dbeafe; color: #1e40af; }
         .plantilla-card {
-            background: #f5f5f5;
-            padding: 20px;
+            border: 1px solid var(--border);
             border-radius: 12px;
+            overflow: hidden;
             margin: 20px 0;
-            border-left: 4px solid #667eea;
         }
-        .plantilla-titulo {
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.1em;
+        .plantilla-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            background: #f8fafc;
+            border-bottom: 1px solid var(--border);
         }
+        .plantilla-titulo { font-weight: 600; font-family: 'Sora', sans-serif; font-size: 0.95em; }
+        .badge {
+            display: inline-block; padding: 3px 10px; border-radius: 20px;
+            font-size: 0.78em; font-weight: 600; font-family: 'Sora', sans-serif;
+        }
+        .badge-green { background: #d1fae5; color: #065f46; }
+        .badge-yellow { background: #fef3c7; color: #92400e; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-purple { background: #ede9fe; color: #6d28d9; }
         .plantilla-texto {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            font-family: monospace;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.92em;
             white-space: pre-line;
-            margin: 10px 0;
+            line-height: 1.65;
+            color: #1e293b;
+            background: white;
         }
         .plantilla-nota {
-            font-size: 0.9em;
-            color: #666;
+            padding: 12px 20px;
+            background: #f8fafc;
+            border-top: 1px solid var(--border);
+            font-size: 0.85em;
+            color: var(--muted);
             font-style: italic;
-            margin-top: 10px;
         }
+        .tip {
+            background: #eff6ff;
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            margin: 24px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tip strong { color: var(--primary); }
+        .consejos-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .consejo-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .consejo-card strong { display: block; margin-bottom: 4px; font-size: 0.93em; }
+        .consejo-card p { font-size: 0.88em; color: var(--muted); margin: 0; }
+        .cta-block {
+            background: linear-gradient(135deg, var(--primary), #7c3aed);
+            color: white; padding: 32px; border-radius: 14px; text-align: center; margin: 40px 0;
+        }
+        .cta-block h3 { color: white; margin-top: 0; font-size: 1.25em; margin-bottom: 10px; }
+        .cta-block p { color: rgba(255,255,255,0.85); margin-bottom: 20px; }
         .cta {
-            background: #667eea;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-block;
-            margin: 20px 0;
-            font-weight: bold;
+            background: white; color: var(--primary); padding: 14px 32px; border-radius: 8px;
+            text-decoration: none; display: inline-block; font-weight: 700;
+            font-family: 'Sora', sans-serif; font-size: 1em; transition: transform 0.2s;
         }
-        .cta:hover { background: #764ba2; }
-        .destacado {
-            background: #f0f7ff;
-            border-left: 4px solid #667eea;
-            padding: 15px;
-            margin: 20px 0;
-        }
-        .categoria {
-            background: #667eea;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            display: inline-block;
-            font-size: 0.9em;
-            margin: 5px 0;
+        .cta:hover { transform: translateY(-2px); }
+        footer { text-align: center; color: var(--muted); font-size: 0.88em; border-top: 1px solid var(--border); padding-top: 32px; margin-top: 48px; }
+        footer a { color: var(--primary); text-decoration: none; }
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.6em; }
+            .consejos-grid { grid-template-columns: 1fr; }
+            .plantilla-card-header { flex-direction: column; align-items: flex-start; gap: 8px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>📱 15 Plantillas de Mensajes para Cobrar por WhatsApp</h1>
-            <p>Copia, personaliza y envía. 100% Gratis.</p>
+            <h1>📱 Plantillas de Mensajes para Cobrar por WhatsApp</h1>
+            <p>Copia, personaliza y envía. Completamente gratis.</p>
         </header>
 
-        <div class="destacado">
-            <strong>💡 Cómo usar estas plantillas:</strong><br>
-            1. Encuentra la plantilla que mejor se ajuste a tu situación<br>
-            2. Reemplaza las variables [Nombre], [Monto], [Fecha], [Concepto]<br>
-            3. Copia y envía por WhatsApp<br>
-            4. O mejor aún: usa <a href="https://cobramatic-app.vercel.app" style="color:#667eea">CobraMatic</a> que lo hace automático
+        <div class="como-usar">
+            <strong>💡 Cómo usar estas plantillas:</strong>
+            <ol>
+                <li>Encuentra la plantilla que mejor se ajuste a tu situación</li>
+                <li>Reemplaza las variables: <strong>[Nombre]</strong>, <strong>[Monto]</strong>, <strong>[Fecha]</strong>, <strong>[Concepto]</strong></li>
+                <li>Copia el mensaje y envíalo por WhatsApp</li>
+                <li>O usa <a href="https://cobramatic-app.vercel.app" style="color: #15803d; font-weight: 600;">CobraMatic</a> para personalizar y enviar con un solo clic</li>
+            </ol>
         </div>
 
-        <h2>📋 Por Categoría:</h2>
-        <p>
-            <span class="categoria">🟢 Prevención (antes del vencimiento)</span>
-            <span class="categoria">🟡 Recordatorio (día de vencimiento)</span>
-            <span class="categoria">🔴 Urgente (vencido)</span>
-        </p>
+        <div class="categorias">
+            <span class="cat-badge cat-green">🟢 Antes del vencimiento</span>
+            <span class="cat-badge cat-yellow">🟡 Día del vencimiento</span>
+            <span class="cat-badge cat-red">🔴 Pago atrasado</span>
+            <span class="cat-badge cat-blue">🤝 Situaciones especiales</span>
+        </div>
 
-        <h2>🟢 Plantillas de Prevención (3-7 días antes)</h2>
+        <h2>🟢 Antes del vencimiento (3 a 7 días antes)</h2>
 
         <div class="plantilla-card">
-            <div class="plantilla-titulo">1. Recordatorio Cortés y Amable</div>
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">1. Recordatorio cortés y amable</span>
+                <span class="badge badge-green">Antes del vencimiento</span>
+            </div>
             <div class="plantilla-texto">Hola [Nombre]! 👋
 
-Espero que estés muy bien. Te escribo para recordarte que tenemos pendiente el pago de [Monto] por [Concepto].
+Espero que estés muy bien. Te escribo para recordarte que tenemos pendiente el pago de $[Monto] por [Concepto].
 
-La fecha acordada es el [Fecha]. ¿Podrías confirmarme cuándo podrías realizar el pago?
+La fecha acordada es el [Fecha]. ¿Podrías confirmarme cuándo podrías realizarlo?
 
 ¡Gracias! 😊</div>
-            <div class="plantilla-nota">💡 Ideal para: Clientes con buena relación, primeros recordatorios</div>
+            <div class="plantilla-nota">💡 Ideal para clientes con buena relación o primeros recordatorios.</div>
         </div>
 
         <div class="plantilla-card">
-            <div class="plantilla-titulo">2. Recordatorio Profesional</div>
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">2. Recordatorio profesional</span>
+                <span class="badge badge-green">Antes del vencimiento</span>
+            </div>
             <div class="plantilla-texto">Hola [Nombre],
 
-Solo un recordatorio rápido: el pago de [Monto] por [Concepto] vence el [Fecha].
+Solo un recordatorio rápido: el pago de $[Monto] por [Concepto] vence el [Fecha].
 
 Si ya realizaste el pago, por favor ignora este mensaje.
 
 ¡Saludos!</div>
-            <div class="plantilla-nota">💡 Ideal para: Clientes corporativos, tono más formal</div>
+            <div class="plantilla-nota">💡 Ideal para clientes corporativos o cuando prefieres un tono más formal.</div>
         </div>
 
         <div class="plantilla-card">
-            <div class="plantilla-titulo">3. Con opción de plan de pagos</div>
-            <div class="plantilla-texto">Hola [Nombre]! 
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">3. Con opción de plan de pagos</span>
+                <span class="badge badge-green">Antes del vencimiento</span>
+            </div>
+            <div class="plantilla-texto">Hola [Nombre]!
 
-Te recuerdo que el [Fecha] vence el pago de [Monto] por [Concepto].
+Te recuerdo que el [Fecha] vence el pago de $[Monto] por [Concepto].
 
 Si tienes algún inconveniente para pagarlo completo, podemos coordinar un plan de pagos.
 
 ¿Qué te parece?</div>
-            <div class="plantilla-nota">💡 Ideal para: Montos grandes, clientes con posibles dificultades</div>
+            <div class="plantilla-nota">💡 Útil para montos grandes o clientes que suelen tener dificultades de liquidez.</div>
         </div>
 
-        <h2>🟡 Plantillas para el Día de Vencimiento</h2>
+        <h2>🟡 Día del vencimiento</h2>
 
         <div class="plantilla-card">
-            <div class="plantilla-titulo">4. Recordatorio Estándar</div>
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">4. Recordatorio estándar</span>
+                <span class="badge badge-yellow">Día de vencimiento</span>
+            </div>
             <div class="plantilla-texto">Hola [Nombre]! 🙂
 
-Te recuerdo amablemente que el pago de [Monto] por [Concepto] vence hoy [Fecha].
+Te recuerdo que el pago de $[Monto] por [Concepto] vence hoy [Fecha].
 
-¿Necesitas alguna información adicional para procesar el pago?
+¿Necesitas alguna información adicional para procesarlo?
 
 Quedo atento. ¡Saludos!</div>
-            <div class="plantilla-nota">💡 Ideal para: Uso general, tono neutral</div>
+            <div class="plantilla-nota">💡 Tono neutral, válido para la mayoría de situaciones.</div>
         </div>
 
         <div class="plantilla-card">
-            <div class="plantilla-titulo">5. Con datos de pago incluidos</div>
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">5. Con datos de pago incluidos</span>
+                <span class="badge badge-yellow">Día de vencimiento</span>
+            </div>
             <div class="plantilla-texto">Hola [Nombre],
 
-El pago de [Monto] por [Concepto] vence hoy.
+El pago de $[Monto] por [Concepto] vence hoy.
 
 Datos para transferencia:
 Banco: [Tu banco]
@@ -173,168 +243,214 @@ Cuenta: [Tu cuenta]
 Titular: [Tu nombre]
 
 Por favor confírmame cuando lo hayas realizado. ¡Gracias!</div>
-            <div class="plantilla-nota">💡 Ideal para: Facilitar el pago, clientes que piden datos</div>
+            <div class="plantilla-nota">💡 Ideal cuando el cliente suele preguntar los datos bancarios en el último momento.</div>
         </div>
 
-        <h2>🔴 Plantillas para Pagos Vencidos</h2>
+        <h2>🔴 Pago atrasado</h2>
 
         <div class="plantilla-card">
-            <div class="plantilla-titulo">6. Primer recordatorio post-vencimiento</div>
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">6. Primer aviso post-vencimiento</span>
+                <span class="badge badge-red">Pago atrasado</span>
+            </div>
             <div class="plantilla-texto">Hola [Nombre],
 
-Noto que el pago de [Monto] por [Concepto] venció el [Fecha] y aún no lo he recibido.
+El pago de $[Monto] por [Concepto] venció el [Fecha] y aún no lo he recibido.
 
 ¿Hay algún inconveniente? Me gustaría resolverlo lo antes posible.
 
 Quedo pendiente de tu respuesta. Gracias.</div>
-            <div class="plantilla-nota">💡 Ideal para: 1-7 días de retraso, tono firme pero educado</div>
+            <div class="plantilla-nota">💡 Para 1 a 7 días de retraso. Tono firme pero respetuoso.</div>
         </div>
 
         <div class="plantilla-card">
-            <div class="plantilla-titulo">7. Segundo recordatorio (más urgente)</div>
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">7. Segundo aviso — tono más directo</span>
+                <span class="badge badge-red">Pago atrasado</span>
+            </div>
             <div class="plantilla-texto">Hola [Nombre],
 
-Te he enviado varios recordatorios sobre el pago de [Monto] por [Concepto] que venció el [Fecha].
+Te he enviado varios mensajes sobre el pago de $[Monto] por [Concepto] que venció el [Fecha].
 
 Necesito que regularices este pago a la brevedad posible.
 
-Por favor, comunícate conmigo hoy para coordinar.</div>
-            <div class="plantilla-nota">💡 Ideal para: 7-15 días de retraso, tono más firme</div>
+Por favor comunícate conmigo hoy para coordinar.</div>
+            <div class="plantilla-nota">💡 Para 7 a 15 días de retraso sin respuesta previa.</div>
         </div>
 
         <div class="plantilla-card">
-            <div class="plantilla-titulo">8. Ofreciendo soluciones</div>
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">8. Ofreciendo soluciones</span>
+                <span class="badge badge-red">Pago atrasado</span>
+            </div>
             <div class="plantilla-texto">Hola [Nombre],
 
-El pago de [Monto] lleva [X días] de retraso desde el [Fecha].
+El pago de $[Monto] por [Concepto] lleva varios días de retraso desde el [Fecha].
 
 Entiendo que pueden surgir imprevistos. ¿Podemos coordinar:
-• Un pago parcial?
-• Un plan de cuotas?
-• Una nueva fecha?
+• Un pago parcial ahora
+• El saldo restante en una fecha definida
 
 Hablemos hoy para encontrar una solución.</div>
-            <div class="plantilla-nota">💡 Ideal para: Mantener la relación, buscar acuerdo</div>
+            <div class="plantilla-nota">💡 Útil para mantener la relación y avanzar hacia un acuerdo.</div>
         </div>
 
-        <h2>🎯 Plantillas por Situación Específica</h2>
+        <h2>🤝 Situaciones especiales</h2>
 
         <div class="plantilla-card">
-            <div class="plantilla-titulo">9. Cliente recurrente con buen historial</div>
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">9. Cliente habitual con retraso inusual</span>
+                <span class="badge badge-blue">Situación especial</span>
+            </div>
             <div class="plantilla-texto">Hola [Nombre]!
 
-Veo que el pago de [Monto] del [Fecha] aún está pendiente.
+Veo que el pago de $[Monto] del [Fecha] aún está pendiente.
 
-Sé que siempre has sido puntual. ¿Está todo bien? ¿Necesitas ayuda con algo?
+Sé que normalmente eres muy puntual. ¿Está todo bien? ¿Necesitas ayuda con algo?
 
 Avísame cuando puedas. 😊</div>
-            <div class="plantilla-nota">💡 Ideal para: Buenos clientes con retraso inusual</div>
+            <div class="plantilla-nota">💡 Para clientes con buen historial a quienes el retraso les es inusual.</div>
         </div>
 
         <div class="plantilla-card">
-            <div class="plantilla-titulo">10. Después de confirmar pago</div>
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">10. Cuando prometieron pagar y no lo hicieron</span>
+                <span class="badge badge-blue">Situación especial</span>
+            </div>
             <div class="plantilla-texto">Hola [Nombre],
 
-Me dijiste que ibas a pagar el [Fecha acordada] pero aún no he recibido los [Monto] por [Concepto].
+Me dijiste que ibas a pagar el [Fecha acordada] pero aún no he recibido los $[Monto] por [Concepto].
 
-¿Hubo algún inconveniente? Por favor confirma el estado del pago.
+¿Hubo algún inconveniente? Por favor confírmame el estado del pago.
 
 Gracias.</div>
-            <div class="plantilla-nota">💡 Ideal para: Cuando prometieron pagar y no lo hicieron</div>
+            <div class="plantilla-nota">💡 Cuando el cliente dio una fecha de pago que no cumplió.</div>
         </div>
 
         <div class="plantilla-card">
-            <div class="plantilla-titulo">11. Para montos pequeños</div>
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">11. Para montos pequeños</span>
+                <span class="badge badge-blue">Situación especial</span>
+            </div>
             <div class="plantilla-texto">Hola [Nombre]!
 
-Tenemos pendiente el pago de [Monto] por [Concepto].
+Tenemos pendiente el pago de $[Monto] por [Concepto].
 
 Es un monto pequeño pero me ayudaría mucho cerrarlo. ¿Podrías hacerlo hoy?
 
 ¡Gracias! 🙏</div>
-            <div class="plantilla-nota">💡 Ideal para: Pagos menores, tono casual</div>
+            <div class="plantilla-nota">💡 Tono casual, apropiado para cobros de bajo monto.</div>
         </div>
 
         <div class="plantilla-card">
-            <div class="plantilla-titulo">12. Para montos grandes</div>
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">12. Para montos grandes</span>
+                <span class="badge badge-blue">Situación especial</span>
+            </div>
             <div class="plantilla-texto">Hola [Nombre],
 
-El pago de [Monto] por [Concepto] está vencido desde el [Fecha].
+El pago de $[Monto] por [Concepto] está pendiente desde el [Fecha].
 
 Entiendo que es un monto considerable. ¿Necesitas que conversemos sobre opciones de pago?
 
-Estoy disponible para llamada o videollamada hoy.</div>
-            <div class="plantilla-nota">💡 Ideal para: Montos altos, ofrecer diálogo directo</div>
+Estoy disponible para una llamada o videollamada hoy.</div>
+            <div class="plantilla-nota">💡 Para cobros de monto alto donde puede ser necesaria una conversación directa.</div>
         </div>
 
-        <h2>🚨 Plantillas de Última Instancia</h2>
-
         <div class="plantilla-card">
-            <div class="plantilla-titulo">13. Último aviso antes de acción legal</div>
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">13. Último aviso antes de escalar</span>
+                <span class="badge badge-red">Último aviso</span>
+            </div>
             <div class="plantilla-texto">Estimado/a [Nombre],
 
-Este es mi último recordatorio amistoso sobre el pago de [Monto] que venció el [Fecha] (hace [X días]).
+Este es mi último mensaje amistoso sobre el pago de $[Monto] que venció el [Fecha].
 
 Si no recibo respuesta en las próximas 48 horas, tendré que considerar otras opciones para recuperar este pago.
 
-Prefiero resolver esto de forma amigable. Por favor contáctame.</div>
-            <div class="plantilla-nota">⚠️ Usar solo después de múltiples intentos sin respuesta</div>
+Prefiero resolver esto de forma directa. Por favor contáctame.</div>
+            <div class="plantilla-nota">⚠️ Usar solo después de múltiples intentos sin ninguna respuesta.</div>
         </div>
 
-        <h2>✅ Plantillas de Confirmación</h2>
+        <h2>✅ Confirmaciones</h2>
 
         <div class="plantilla-card">
-            <div class="plantilla-titulo">14. Confirmación de pago recibido</div>
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">14. Pago recibido — agradecimiento</span>
+                <span class="badge badge-green">Confirmación</span>
+            </div>
             <div class="plantilla-texto">Hola [Nombre]!
 
-¡Perfecto! Ya recibí tu pago de [Monto] por [Concepto].
+¡Perfecto! Ya recibí tu pago de $[Monto] por [Concepto].
 
-Muchas gracias por tu puntualidad. Ha sido un placer trabajar contigo.
+Muchas gracias. Ha sido un placer trabajar contigo.
 
-¡Nos vemos en el próximo proyecto! 😊</div>
-            <div class="plantilla-nota">💡 Importante para mantener buena relación</div>
+¡Hasta la próxima! 😊</div>
+            <div class="plantilla-nota">💡 Siempre confirma la recepción del pago. Refuerza la relación y cierra el ciclo.</div>
         </div>
 
         <div class="plantilla-card">
-            <div class="plantilla-titulo">15. Agradecimiento por resolver retraso</div>
+            <div class="plantilla-card-header">
+                <span class="plantilla-titulo">15. Agradecimiento después de un retraso resuelto</span>
+                <span class="badge badge-green">Confirmación</span>
+            </div>
             <div class="plantilla-texto">Hola [Nombre],
 
-Gracias por regularizar el pago de [Monto].
+Gracias por resolver el pago de $[Monto].
 
-Entiendo que pueden surgir imprevistos y aprecio que lo hayas resuelto.
+Entiendo que pueden surgir imprevistos y aprecio que lo hayas solucionado.
 
 ¡Seguimos trabajando juntos! 🤝</div>
-            <div class="plantilla-nota">💡 Refuerza la relación después de un conflicto</div>
+            <div class="plantilla-nota">💡 Importante para mantener una buena relación después de un conflicto de pago.</div>
         </div>
 
-        <div class="destacado">
+        <div class="tip">
+            <strong>Recuerda:</strong> Estas plantillas son un punto de partida. Siempre adapta el tono a tu relación con cada cliente y a tu estilo de comunicación.
+        </div>
+
+        <h2>Consejos para usar estas plantillas bien</h2>
+
+        <div class="consejos-grid">
+            <div class="consejo-card">
+                <strong>Personaliza siempre</strong>
+                <p>Un mensaje genérico se nota. Agregar el nombre y el concepto exacto muestra que estás al tanto.</p>
+            </div>
+            <div class="consejo-card">
+                <strong>Envía en horario laboral</strong>
+                <p>Entre las 9 am y las 6 pm en días hábiles. Evita noches y fines de semana salvo urgencia.</p>
+            </div>
+            <div class="consejo-card">
+                <strong>Aumenta el tono gradualmente</strong>
+                <p>Empieza cortés y ve siendo más directo si no hay respuesta. No empieces con urgencia máxima.</p>
+            </div>
+            <div class="consejo-card">
+                <strong>Guarda evidencia</strong>
+                <p>Los chats de WhatsApp pueden servir como respaldo. Exporta o captura conversaciones importantes.</p>
+            </div>
+            <div class="consejo-card">
+                <strong>No copies textual</strong>
+                <p>Adapta el lenguaje a tu forma de hablar. Un mensaje que suena a ti genera más confianza.</p>
+            </div>
+            <div class="consejo-card">
+                <strong>Haz seguimiento</strong>
+                <p>Si no hay respuesta en 3 días, reenvía. El seguimiento constante es lo que diferencia cobros exitosos.</p>
+            </div>
+        </div>
+
+        <div class="cta-block">
             <h3>🚀 ¿Cansado de copiar y pegar?</h3>
-            <p>Con <strong>CobraMatic</strong> puedes:</p>
-            <ul style="margin: 10px 0 10px 20px;">
-                <li>✅ Guardar todas estas plantillas</li>
-                <li>✅ Personalizar automáticamente con datos del cliente</li>
-                <li>✅ Enviar con 1 clic</li>
-                <li>✅ Hacer seguimiento de quién pagó</li>
-                <li>✅ Ver historial de recordatorios</li>
-            </ul>
+            <p>Con CobraMatic guardas tus clientes, envías recordatorios personalizados con un clic y llevas el historial automático de cada cobro. Todo gratis.</p>
             <a href="https://cobramatic-app.vercel.app" class="cta">💰 Probar CobraMatic Gratis</a>
         </div>
 
-        <h2>Consejos para usar estas plantillas</h2>
-        <ol style="margin: 15px 0 15px 30px;">
-            <li><strong>Personaliza siempre:</strong> Cambia el tono según tu relación con el cliente</li>
-            <li><strong>No copies textual:</strong> Adapta a tu estilo de comunicación</li>
-            <li><strong>Envía en horario laboral:</strong> 9am - 6pm es ideal</li>
-            <li><strong>Progresión de tono:</strong> Empieza cortés, aumenta firmeza si no responden</li>
-            <li><strong>Guarda evidencia:</strong> Los mensajes de WhatsApp sirven como comprobante</li>
-        </ol>
-
-        <hr style="margin: 40px 0;">
-        <p style="text-align: center; color: #999;">
-            CobraMatic © 2026 - Plantillas gratuitas de cobranza por WhatsApp<br>
-            <a href="https://cobramatic-app.vercel.app" style="color: #667eea;">Usar CobraMatic Gratis</a> | 
-            <a href="/como-cobrar-clientes-whatsapp" style="color: #667eea;">Guía completa</a>
-        </p>
+        <footer>
+            <p>CobraMatic © 2026 — Plantillas gratuitas de cobro por WhatsApp</p>
+            <p style="margin-top: 8px;">
+                <a href="https://cobramatic-app.vercel.app">Inicio</a> &nbsp;|&nbsp;
+                <a href="/como-cobrar-clientes-whatsapp">Guía completa de cobros</a> &nbsp;|&nbsp;
+                <a href="/herramientas-freelancers">Herramientas para freelancers</a>
+            </p>
+        </footer>
     </div>
 </body>
 </html>
