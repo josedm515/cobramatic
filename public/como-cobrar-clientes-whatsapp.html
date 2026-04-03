@@ -4,240 +4,474 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cómo Cobrar a tus Clientes por WhatsApp (Guía 2026) | CobraMatic</title>
-    <meta name="description" content="Guía completa para cobrar a tus clientes por WhatsApp de forma profesional. Plantillas, consejos y herramientas gratis para reducir la morosidad.">
+    <meta name="description" content="Guía completa para cobrar a tus clientes por WhatsApp de forma profesional. Plantillas, consejos y herramientas gratis para recibir tus pagos a tiempo.">
     <meta name="keywords" content="cobrar clientes whatsapp, recordatorios pago whatsapp, plantillas cobro whatsapp, como cobrar por whatsapp">
     <link rel="canonical" href="https://cobramatic-app.vercel.app/como-cobrar-clientes-whatsapp">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --accent: #06b6d4;
+            --text: #1e1b4b;
+            --muted: #6b7280;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --green: #10b981;
+            --red: #ef4444;
+            --yellow: #f59e0b;
+        }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f9f9f9;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
         }
         .container {
-            max-width: 800px;
+            max-width: 820px;
             margin: 0 auto;
-            padding: 20px;
-            background: white;
+            padding: 0 20px 60px;
+            background: var(--white);
         }
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
             color: white;
-            padding: 40px 20px;
+            padding: 56px 32px 48px;
             text-align: center;
-            margin: -20px -20px 40px -20px;
+            margin-bottom: 48px;
+            position: relative;
+            overflow: hidden;
         }
-        h1 { font-size: 2.2em; margin-bottom: 10px; }
-        h2 { color: #667eea; margin: 30px 0 15px; font-size: 1.5em; }
-        h3 { color: #555; margin: 20px 0 10px; }
-        p { margin-bottom: 15px; }
-        .destacado {
-            background: #f0f7ff;
-            border-left: 4px solid #667eea;
-            padding: 15px;
-            margin: 20px 0;
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
+        header h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        header p {
+            font-size: 1.05em;
+            opacity: 0.9;
+            position: relative;
+        }
+        h2 {
+            font-family: 'Sora', sans-serif;
+            color: var(--primary);
+            margin: 44px 0 16px;
+            font-size: 1.45em;
+            font-weight: 700;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+        h3 {
+            color: var(--text);
+            margin: 24px 0 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        p { margin-bottom: 14px; color: #374151; }
+        .tabla-contenido {
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+            padding: 24px 28px;
+            border-radius: 12px;
+            margin: 0 0 40px;
+        }
+        .tabla-contenido h3 { margin-top: 0; color: var(--primary); }
+        .tabla-contenido ol { margin-left: 20px; }
+        .tabla-contenido li { margin: 8px 0; }
+        .tabla-contenido a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .tabla-contenido a:hover { text-decoration: underline; }
+        ul, ol { margin: 12px 0 16px 24px; }
+        li { margin: 8px 0; color: #374151; }
+        .tip {
+            background: #eff6ff;
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            margin: 24px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tip strong { color: var(--primary); }
         .plantilla {
-            background: #f5f5f5;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-family: monospace;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 16px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.93em;
             white-space: pre-line;
+            line-height: 1.6;
+            color: #1e293b;
         }
-        .cta {
-            background: #667eea;
+        .plantilla-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            font-family: 'Sora', sans-serif;
+        }
+        .badge-green { background: #d1fae5; color: #065f46; }
+        .badge-yellow { background: #fef3c7; color: #92400e; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        .error-card {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 16px 0;
+        }
+        .error-card h3 { color: #c2410c; margin-top: 0; }
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 14px 0;
+        }
+        .faq-item h3 { margin-top: 0; color: var(--primary); }
+        .cta-block {
+            background: linear-gradient(135deg, var(--primary), #7c3aed);
             color: white;
-            padding: 15px 30px;
+            padding: 32px;
+            border-radius: 14px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .cta-block h3 { color: white; margin-top: 0; font-size: 1.3em; }
+        .cta-block p { color: rgba(255,255,255,0.85); margin-bottom: 20px; }
+        .cta {
+            background: white;
+            color: var(--primary);
+            padding: 14px 32px;
             border-radius: 8px;
             text-decoration: none;
             display: inline-block;
-            margin: 20px 0;
-            font-weight: bold;
+            font-weight: 700;
+            font-family: 'Sora', sans-serif;
+            font-size: 1em;
+            transition: transform 0.2s;
         }
-        .cta:hover { background: #764ba2; }
-        ul, ol { margin: 15px 0 15px 30px; }
-        li { margin: 8px 0; }
-        .tabla-contenido {
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
+        .cta:hover { transform: translateY(-2px); }
+        .paso-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
             margin: 20px 0;
         }
-        .tabla-contenido ul { list-style: none; margin-left: 0; }
-        .tabla-contenido a { color: #667eea; text-decoration: none; }
-        .tabla-contenido a:hover { text-decoration: underline; }
+        .paso {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .paso-num {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .paso strong { color: var(--text); display: block; margin-bottom: 4px; }
+        .paso p { font-size: 0.9em; margin: 0; color: var(--muted); }
+        .respuesta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .respuesta-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .respuesta-card .emoji { font-size: 1.4em; margin-bottom: 6px; display: block; }
+        .respuesta-card strong { display: block; margin-bottom: 4px; font-size: 0.9em; }
+        .respuesta-card p { font-size: 0.88em; color: var(--muted); margin: 0; }
+        footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.88em;
+            border-top: 1px solid var(--border);
+            padding-top: 32px;
+            margin-top: 48px;
+        }
+        footer a { color: var(--primary); text-decoration: none; }
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.6em; }
+            .paso-grid, .respuesta-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>💰 Cómo Cobrar a tus Clientes por WhatsApp</h1>
-            <p>Guía completa para cobrar de forma profesional y reducir la demoras</p>
+            <p>Guía completa para cobrar de forma profesional y recibir tus pagos a tiempo</p>
         </header>
 
         <div class="tabla-contenido">
-            <h3>📋 Contenido de esta guía:</h3>
-            <ul>
-                <li><a href="#por-que">1. ¿Por qué usar WhatsApp para cobrar?</a></li>
-                <li><a href="#preparacion">2. Preparación antes de enviar</a></li>
-                <li><a href="#plantillas">3. Plantillas de mensajes que funcionan</a></li>
-                <li><a href="#errores">4. Errores comunes a evitar</a></li>
-                <li><a href="#herramienta">5. Herramienta gratuita para automatizar</a></li>
-            </ul>
+            <h3>📋 En esta guía encontrarás:</h3>
+            <ol>
+                <li><a href="#por-que">Por qué WhatsApp es un buen canal de cobro</a></li>
+                <li><a href="#preparacion">Cómo prepararte antes de enviar un recordatorio</a></li>
+                <li><a href="#plantillas">Plantillas de mensajes listas para usar</a></li>
+                <li><a href="#segun-respuesta">Qué hacer según la respuesta del cliente</a></li>
+                <li><a href="#errores">Errores comunes que debes evitar</a></li>
+                <li><a href="#faq">Preguntas frecuentes</a></li>
+            </ol>
         </div>
 
         <h2 id="por-que">¿Por qué usar WhatsApp para cobrar?</h2>
-        <p>WhatsApp se ha convertido en una gran herramienta para recordatorios de cobro en Latinoamérica. Las razones:</p>
+        <p>WhatsApp es hoy uno de los canales de comunicación más directos que existen, especialmente en Latinoamérica. Usarlo para gestionar cobros tiene ventajas concretas frente a otras opciones:</p>
         <ul>
-            <li><strong>Tasa de apertura alta</strong> - Casi todos leen los mensajes de WhatsApp</li>
-            <li><strong>Respuesta inmediata</strong> - Tus clientes pueden responder al instante</li>
-            <li><strong>Profesional pero cercano</strong> - Menos formal que un email, más serio que una llamada</li>
-            <li><strong>Gratis</strong> - No pagas por enviar mensajes</li>
-            <li><strong>Comprobante de lectura</strong> - Sabes si vieron tu mensaje</li>
+            <li><strong>Alta tasa de lectura</strong> — Los mensajes de WhatsApp se leen con mucha más rapidez que los correos electrónicos.</li>
+            <li><strong>Respuesta directa</strong> — El cliente puede responder al instante, lo que agiliza el proceso.</li>
+            <li><strong>Tono cercano pero profesional</strong> — Permite mantener una relación cómoda sin perder seriedad.</li>
+            <li><strong>Sin costo adicional</strong> — Solo necesitas conexión a internet.</li>
+            <li><strong>Confirmación de lectura</strong> — Los ticks azules indican si el mensaje fue visto.</li>
+            <li><strong>Evidencia escrita</strong> — Los chats quedan registrados y pueden servir como respaldo de comunicaciones.</li>
         </ul>
 
-       
+        <div class="tip">
+            <strong>Importante:</strong> WhatsApp es un canal de comunicación, no un sistema de cobro automatizado. La clave está en el tono, el momento y la consistencia de tus mensajes.
+        </div>
 
-        <h2 id="preparacion">Preparación antes de enviar el recordatorio</h2>
-        <p>No envíes recordatorios improvisados. Sigue estos pasos:</p>
+        <h2 id="preparacion">Preparación antes de enviar un recordatorio</h2>
+        <p>Enviar un recordatorio improvisado puede generar confusión o malentendidos. Antes de escribir al cliente, verifica lo siguiente:</p>
 
-        <h3>1. Verifica la información</h3>
+        <div class="paso-grid">
+            <div class="paso">
+                <div class="paso-num">01</div>
+                <strong>Verifica el monto exacto</strong>
+                <p>Asegúrate de tener el valor correcto que se debe. Nada genera más fricción que un monto incorrecto.</p>
+            </div>
+            <div class="paso">
+                <div class="paso-num">02</div>
+                <strong>Confirma la fecha de vencimiento</strong>
+                <p>Revisa cuándo vencía el pago antes de calificarlo como atrasado.</p>
+            </div>
+            <div class="paso">
+                <div class="paso-num">03</div>
+                <strong>Identifica el concepto</strong>
+                <p>¿Por qué trabajo o servicio es el cobro? El cliente debe recordarlo fácilmente.</p>
+            </div>
+            <div class="paso">
+                <div class="paso-num">04</div>
+                <strong>Elige el tono adecuado</strong>
+                <p>El tono cambia según si el pago está próximo, vence hoy o ya está atrasado.</p>
+            </div>
+        </div>
+
+        <h3>¿Qué tono usar según la situación?</h3>
         <ul>
-            <li>✅ Monto exacto a cobrar</li>
-            <li>✅ Fecha de vencimiento</li>
-            <li>✅ Concepto del servicio/producto</li>
-            <li>✅ Número de WhatsApp correcto</li>
+            <li><strong>Cortés:</strong> Cuando el pago aún no ha vencido (3 a 7 días antes)</li>
+            <li><strong>Recordatorio directo:</strong> El día que vence el pago</li>
+            <li><strong>Firme y claro:</strong> Cuando el pago lleva más de una semana de retraso</li>
         </ul>
 
-        <h3>2. Elige el tono adecuado</h3>
-        <p>Según la situación del pago:</p>
-        <ul>
-            <li><strong>Cortés:</strong> Pago próximo a vencer (3-7 días antes)</li>
-            <li><strong>Recordatorio:</strong> Pago vence hoy o mañana</li>
-            <li><strong>Urgente:</strong> Pago vencido hace más de 7 días</li>
-        </ul>
+        <h2 id="plantillas">Plantillas de mensajes para cobrar por WhatsApp</h2>
+        <p>Estas plantillas están diseñadas para distintas situaciones. Personaliza siempre con el nombre del cliente, el monto, la fecha y el concepto del cobro.</p>
 
-        <h3>3. Personaliza el mensaje</h3>
-        <p>Siempre incluye:</p>
-        <ul>
-            <li>Nombre del cliente</li>
-            <li>Monto específico</li>
-            <li>Fecha de vencimiento</li>
-            <li>Concepto del cobro</li>
-        </ul>
-
-        <h2 id="plantillas">Plantillas de mensajes que funcionan</h2>
-
-        <h3>🟢 Plantilla 1: Recordatorio Cortés (Pre-vencimiento)</h3>
+        <div class="plantilla-header">
+            <span class="badge badge-green">🟢 Antes del vencimiento</span>
+        </div>
         <div class="plantilla">Hola [Nombre]! 👋
 
-Espero que estés muy bien. Te escribo para recordarte que tenemos pendiente el pago de $[Monto] por [Concepto].
+Espero que estés bien. Te escribo para recordarte que tenemos pendiente el pago de $[Monto] por [Concepto].
 
-La fecha acordada es el [Fecha]. ¿Podrías confirmarme cuándo podrías realizar el pago?
+La fecha acordada es el [Fecha]. ¿Podrías confirmarme cuándo podrías realizarlo?
 
 ¡Gracias! 😊</div>
 
-        <h3>🟡 Plantilla 2: Recordatorio Estándar (Día de vencimiento)</h3>
+        <div class="plantilla-header">
+            <span class="badge badge-yellow">🟡 Día del vencimiento</span>
+        </div>
         <div class="plantilla">Hola [Nombre]! 🙂
 
-Te recuerdo amablemente que el pago de $[Monto] por [Concepto] vence hoy [Fecha].
+Te recuerdo que el pago de $[Monto] por [Concepto] vence hoy [Fecha].
 
-¿Necesitas alguna información adicional para procesar el pago?
+¿Necesitas algún dato adicional para procesarlo?
 
 Quedo atento. ¡Saludos!</div>
 
-        <h3>🔴 Plantilla 3: Recordatorio Urgente (Pago vencido)</h3>
+        <div class="plantilla-header">
+            <span class="badge badge-red">🔴 Pago atrasado</span>
+        </div>
         <div class="plantilla">Hola [Nombre],
 
-Noto que el pago de $[Monto] por [Concepto] venció el [Fecha] y aún no lo he recibido.
+El pago de $[Monto] por [Concepto] venció el [Fecha] y aún no lo he recibido.
 
-¿Hay algún inconveniente? Me gustaría resolverlo lo antes posible.
+¿Hay algún inconveniente? Me gustaría encontrar una solución lo antes posible.
 
 Quedo pendiente de tu respuesta. Gracias.</div>
 
-        <div class="destacado">
-            <strong>⚠️ Consejo :</strong> Envía el recordatorio entre 9am y 6pm. Evita fines de semana a menos que sea urgente.
+        <div class="plantilla-header">
+            <span class="badge badge-red">🔴 Segundo aviso — tono más firme</span>
+        </div>
+        <div class="plantilla">Hola [Nombre],
+
+Ya te he enviado varios mensajes sobre el pago de $[Monto] por [Concepto], que venció el [Fecha].
+
+Necesito que regularicemos este tema. Por favor comunícate conmigo hoy para coordinar.
+
+Gracias.</div>
+
+        <div class="plantilla-header">
+            <span class="badge badge-yellow">🤝 Ofreciendo plan de pagos</span>
+        </div>
+        <div class="plantilla">Hola [Nombre],
+
+El pago de $[Monto] por [Concepto] lleva varios días de retraso desde el [Fecha].
+
+Entiendo que pueden surgir imprevistos. ¿Podríamos coordinar:
+• Un pago parcial ahora
+• El resto en una fecha definida?
+
+Hablemos hoy para encontrar una solución que funcione para los dos.</div>
+
+        <div class="plantilla-header">
+            <span class="badge badge-green">✅ Confirmación de pago recibido</span>
+        </div>
+        <div class="plantilla">Hola [Nombre]!
+
+¡Perfecto! Ya recibí tu pago de $[Monto] por [Concepto].
+
+Muchas gracias. Ha sido un placer trabajar contigo.
+
+¡Hasta la próxima! 😊</div>
+
+        <div class="tip">
+            <strong>Consejo:</strong> Envía los recordatorios entre las 9 am y las 6 pm en días hábiles. Evita fines de semana salvo que sea urgente.
         </div>
 
-        <h2 id="errores">Errores comunes a evitar</h2>
+        <h2 id="segun-respuesta">Qué hacer según la respuesta del cliente</h2>
+        <p>Una de las partes más importantes del proceso es saber cómo reaccionar cuando el cliente responde. Aquí las situaciones más comunes:</p>
 
-        <h3>❌ Error 1: Ser agresivo o amenazante</h3>
-        <p>Nunca uses frases como:</p>
-        <ul>
-            <li>"Si no pagas, tomaré acciones legales"</li>
-            <li>"Esto es inaceptable"</li>
-            <li>"Eres un perezoso"</li>
-        </ul>
-        <p><strong>Resultado:</strong> Dañas la relación y no cobras.</p>
-
-        <h3>❌ Error 2: Ser demasiado pasivo</h3>
-        <p>Evita frases débiles como:</p>
-        <ul>
-            <li>"Cuando puedas..."</li>
-            <li>"No hay prisa..."</li>
-            <li>"Si te acuerdas..."</li>
-        </ul>
-        <p><strong>Resultado:</strong> El cliente no siente urgencia y posterga.</p>
-
-        <h3>❌ Error 3: No dar seguimiento</h3>
-        <p>Si no responden en 3 días, envía otro mensaje educado.</p>
-
-        <h3>❌ Error 4: Olvidar los datos</h3>
-        <p>Siempre incluye: monto, fecha y concepto. No asumas que recuerdan.</p>
-
-        <h2 id="herramienta">Herramienta gratuita para automatizar tus cobros</h2>
-
-        <p>Si gestionas más de 5 clientes, llevar el control manualmente es complicado. CobraMatic te ayuda a:</p>
-
-        <ul>
-            <li>✅ Gestionar todos tus clientes en un solo lugar</li>
-            <li>✅ Enviar recordatorios personalizados con 1 clic</li>
-            <li>✅ Ver cuánto dinero tienes por cobrar</li>
-            <li>✅ Hacer seguimiento de pagos vencidos</li>
-            <li>✅ Guardar historial de recordatorios enviados</li>
-        </ul>
-
-        <div class="destacado">
-            <strong>🎉 100% Gratis</strong> - Sin tarjeta de crédito. Sin límites.
+        <div class="respuesta-grid">
+            <div class="respuesta-card">
+                <span class="emoji">✅</span>
+                <strong>"Ya pagué"</strong>
+                <p>Pide amablemente el comprobante de transferencia para verificar. A veces los pagos tardan en reflejarse.</p>
+            </div>
+            <div class="respuesta-card">
+                <span class="emoji">📅</span>
+                <strong>"Te pago la próxima semana"</strong>
+                <p>Confirma una fecha exacta: "¿El lunes o martes?". Una fecha concreta reduce el riesgo de otro retraso.</p>
+            </div>
+            <div class="respuesta-card">
+                <span class="emoji">💸</span>
+                <strong>"No tengo el dinero ahora"</strong>
+                <p>Ofrece un plan: pago parcial ahora y el resto en una fecha definida. Algo es mejor que nada.</p>
+            </div>
+            <div class="respuesta-card">
+                <span class="emoji">🔇</span>
+                <strong>No responde</strong>
+                <p>Espera 3 días y reenvía. Si tras 3 intentos no hay respuesta, considera una llamada telefónica.</p>
+            </div>
+            <div class="respuesta-card">
+                <span class="emoji">❓</span>
+                <strong>"¿Por qué concepto es?"</strong>
+                <p>Explica brevemente el trabajo realizado. Es normal que los clientes con varios proveedores necesiten recordarlo.</p>
+            </div>
+            <div class="respuesta-card">
+                <span class="emoji">🏦</span>
+                <strong>"¿Cuáles son tus datos bancarios?"</strong>
+                <p>Envía inmediatamente tus datos de pago. No demores esta respuesta: el cliente está listo para pagar.</p>
+            </div>
         </div>
 
-        <a href="https://cobramatic-app.vercel.app" class="cta">🚀 Probar CobraMatic Gratis</a>
+        <h2 id="errores">Errores comunes al cobrar por WhatsApp</h2>
 
-        <h2>Preguntas Frecuentes</h2>
+        <div class="error-card">
+            <h3>❌ Ser agresivo o amenazante</h3>
+            <p>Frases como "esto es inaceptable" o "tomaré acciones legales" dicho precipitadamente dañan la relación sin resolver el problema. Mantén siempre un tono profesional.</p>
+        </div>
 
-        <h3>¿Cuántas veces debo enviar un recordatorio?</h3>
-        <p>Recomendamos: 1 recordatorio 3 días antes, 1 el día del vencimiento, y 1 cada 7 días después del vencimiento.</p>
+        <div class="error-card">
+            <h3>❌ Ser demasiado pasivo</h3>
+            <p>Expresiones como "cuando puedas" o "no hay prisa" le quitan urgencia al cobro. El cliente necesita entender que el pago es importante para ti.</p>
+        </div>
 
-        <h3>¿Qué hago si el cliente no responde?</h3>
-        <p>Después de 3 recordatorios sin respuesta (21 días), considera una llamada telefónica o email formal.</p>
+        <div class="error-card">
+            <h3>❌ No hacer seguimiento</h3>
+            <p>Si envías un recordatorio y no obtienes respuesta, no asumas que el cliente lo vio y lo ignorará. Un seguimiento educado a los 3 días es completamente válido.</p>
+        </div>
 
-        <h3>¿Es legal cobrar por WhatsApp?</h3>
-        <p>Sí, siempre y cuando no amenaces ni hostigues al cliente. Mantén un tono profesional.</p>
+        <div class="error-card">
+            <h3>❌ Omitir los datos del cobro</h3>
+            <p>Siempre incluye monto, fecha de vencimiento y concepto. No des por sentado que el cliente recuerda los detalles.</p>
+        </div>
 
-        <h3>¿Funciona WhatsApp Business mejor que WhatsApp normal?</h3>
-        <p>Ambos funcionan igual. WhatsApp Business permite etiquetas y respuestas automáticas, pero no es necesario.</p>
+        <div class="error-card">
+            <h3>❌ Enviar mensajes en horarios inapropiados</h3>
+            <p>Mensajes muy temprano en la mañana, tarde en la noche o en festivos generan una mala impresión y pueden irritar al cliente.</p>
+        </div>
 
-        <h2>Conclusión</h2>
-        <p>Cobrar por WhatsApp es efectivo si:</p>
-        <ol>
-            <li>Usas el tono adecuado según la situación</li>
-            <li>Personalizas cada mensaje</li>
-            <li>Haces seguimiento constante</li>
-            <li>Mantienes registros organizados</li>
-        </ol>
+        <h2 id="faq">Preguntas frecuentes</h2>
 
-        <p>Con CobraMatic, todo esto es automático y gratis. Empieza hoy a reducir tu morosidad.</p>
+        <div class="faq-item">
+            <h3>¿Con qué frecuencia debo enviar recordatorios?</h3>
+            <p>Una buena práctica es: un recordatorio 3 a 5 días antes del vencimiento, uno el día que vence, y uno cada 5 a 7 días después si no hay respuesta. Más de eso puede sentirse invasivo.</p>
+        </div>
 
-        <a href="https://cobramatic-app.vercel.app" class="cta">💰 Empezar a usar CobraMatic</a>
+        <div class="faq-item">
+            <h3>¿Qué hago si el cliente no responde después de varios mensajes?</h3>
+            <p>Después de 3 mensajes sin respuesta, intenta una llamada telefónica. Si tampoco responde, considera enviar un correo formal. Si el monto es significativo, evalúa con un profesional las opciones legales disponibles en tu país.</p>
+        </div>
 
-        <hr style="margin: 40px 0;">
-        <p style="text-align: center; color: #999;">
-            CobraMatic © 2026 - Software gratuito de cobranza por WhatsApp<br>
-            <a href="https://cobramatic-app.vercel.app" style="color: #667eea;">Inicio</a> | 
-            <a href="/" style="color: #667eea;">Más guías</a>
-        </p>
+        <div class="faq-item">
+            <h3>¿Es legal cobrar por WhatsApp?</h3>
+            <p>Sí, siempre que no amenaces, acoses ni difames al cliente. WhatsApp es un canal de comunicación válido. Mantén un tono profesional y respeta horarios razonables.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>¿WhatsApp Business es mejor que WhatsApp normal para cobrar?</h3>
+            <p>Ambos funcionan igual para enviar mensajes de cobro. WhatsApp Business ofrece funciones adicionales como etiquetas y respuestas automáticas, pero no es obligatorio.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>¿Los mensajes de WhatsApp sirven como evidencia?</h3>
+            <p>En muchos casos sí. Las conversaciones de WhatsApp pueden servir como respaldo de comunicaciones, acuerdos de pago y recordatorios enviados. Guarda capturas o exporta los chats si necesitas evidencia.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>¿Debo seguir trabajando con un cliente que siempre paga tarde?</h3>
+            <p>Depende del monto y la frecuencia. Algunas opciones: solicitar un pago adelantado antes de comenzar el siguiente trabajo, ajustar tus condiciones de pago, o en casos extremos, evaluar si la relación comercial vale la pena continuar.</p>
+        </div>
+
+        <div class="cta-block">
+            <h3>🚀 ¿Gestionas varios clientes a la vez?</h3>
+            <p>CobraMatic te ayuda a organizar todos tus cobros pendientes, enviar recordatorios personalizados con un clic y llevar el historial de cada cliente. Gratis, sin registro de correo, sin límites.</p>
+            <a href="https://cobramatic-app.vercel.app" class="cta">Probar CobraMatic Gratis</a>
+        </div>
+
+        <footer>
+            <p>CobraMatic © 2026 — Herramienta gratuita para gestionar cobros por WhatsApp</p>
+            <p style="margin-top: 8px;">
+                <a href="https://cobramatic-app.vercel.app">Inicio</a> &nbsp;|&nbsp;
+                <a href="/plantillas-mensajes-cobro-whatsapp">Plantillas de mensajes</a> &nbsp;|&nbsp;
+                <a href="/herramientas-freelancers">Herramientas para freelancers</a>
+            </p>
+        </footer>
     </div>
 </body>
 </html>
