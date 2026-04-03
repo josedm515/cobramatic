@@ -4,95 +4,172 @@ import Auth from './Auth'
 import Landing from './Landing'
 import './App.css'
 
-// Plantillas de mensajes predefinidas
+// Plantillas de mensajes
 const plantillas = {
-  cortés: `Hola {nombre}! 👋
+  cortés: {
+    label: '😊 Cortés — Antes del vencimiento',
+    texto: `Hola {nombre}! 👋
 
 Espero que estés muy bien. Te escribo para recordarte que tenemos pendiente el pago de {monto} por {concepto}.
 
-La fecha acordada es {fecha}. ¿Podrías confirmarme cuándo podrías realizar el pago?
+La fecha acordada es el {fecha}. ¿Podrías confirmarme cuándo podrías realizarlo?
 
-¡Gracias! 😊`,
-  
-  recordatorio: `Hola {nombre}! 🙂
+¡Gracias! 😊`
+  },
 
-Te recuerdo amablemente que el pago de {monto} por {concepto} vence el {fecha}.
+  profesional: {
+    label: '🤝 Profesional — Recordatorio formal',
+    texto: `Hola {nombre},
 
-¿Necesitas alguna información adicional para procesar el pago?
+Te envío un recordatorio rápido: el pago de {monto} por {concepto} vence el {fecha}.
 
-Quedo atento. ¡Saludos!`,
-  
-  urgente: `Hola {nombre},
+Si ya realizaste el pago, por favor ignora este mensaje.
 
-Noto que el pago de {monto} por {concepto} venció el {fecha} y aún no lo he recibido.
+¡Saludos!`
+  },
+
+  conDatos: {
+    label: '🏦 Con datos de pago incluidos',
+    texto: `Hola {nombre},
+
+El pago de {monto} por {concepto} vence el {fecha}.
+
+Te comparto mis datos para la transferencia:
+Banco: [Tu banco]
+Cuenta: [Tu número de cuenta]
+Titular: [Tu nombre]
+
+Por favor confírmame cuando lo hayas realizado. ¡Gracias!`
+  },
+
+  recordatorio: {
+    label: '🔔 Recordatorio — Día del vencimiento',
+    texto: `Hola {nombre}! 🙂
+
+Te recuerdo que el pago de {monto} por {concepto} vence hoy {fecha}.
+
+¿Necesitas alguna información adicional para procesarlo?
+
+Quedo atento. ¡Saludos!`
+  },
+
+  urgente: {
+    label: '🔴 Urgente — Pago atrasado',
+    texto: `Hola {nombre},
+
+El pago de {monto} por {concepto} venció el {fecha} y aún no lo he recibido.
 
 ¿Hay algún inconveniente? Me gustaría resolverlo lo antes posible.
 
 Quedo pendiente de tu respuesta. Gracias.`
+  },
+
+  segundoAviso: {
+    label: '⚠️ Segundo aviso — Más firme',
+    texto: `Hola {nombre},
+
+Ya te he enviado varios recordatorios sobre el pago de {monto} por {concepto} que venció el {fecha}.
+
+Necesito que regularicemos este tema. Por favor comunícate conmigo hoy para coordinar.
+
+Gracias.`
+  },
+
+  planPagos: {
+    label: '🤝 Ofreciendo plan de pagos',
+    texto: `Hola {nombre},
+
+El pago de {monto} por {concepto} lleva varios días de retraso desde el {fecha}.
+
+Entiendo que pueden surgir imprevistos. ¿Podemos coordinar:
+• Un pago parcial ahora
+• El saldo restante en una fecha definida
+
+Hablemos hoy para encontrar una solución. 🙏`
+  },
+
+  clienteRecurrente: {
+    label: '💛 Cliente habitual con retraso inusual',
+    texto: `Hola {nombre}! 
+
+Veo que el pago de {monto} por {concepto} del {fecha} aún está pendiente.
+
+Sé que normalmente eres muy puntual. ¿Está todo bien? ¿Necesitas ayuda con algo?
+
+Avísame cuando puedas. 😊`
+  },
+
+  ultimoAviso: {
+    label: '🚨 Último aviso antes de escalar',
+    texto: `Estimado/a {nombre},
+
+Este es mi último recordatorio sobre el pago de {monto} por {concepto} que venció el {fecha}.
+
+Si no recibo respuesta en las próximas 48 horas, tendré que considerar otras opciones para recuperar este pago.
+
+Prefiero resolver esto de forma directa. Por favor contáctame.`
+  },
+
+  confirmacion: {
+    label: '✅ Confirmación de pago recibido',
+    texto: `Hola {nombre}! 
+
+¡Perfecto! Ya recibí tu pago de {monto} por {concepto}.
+
+Muchas gracias. Ha sido un placer trabajar contigo.
+
+¡Hasta la próxima! 😊`
+  }
 };
 
 function App() {
-  // Estado de autenticación
   const [userCode, setUserCode] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
-  // Estado para controlar el flujo: landing → login → app
   const [mostrarLanding, setMostrarLanding] = useState(true);
   const [mostrarApp, setMostrarApp] = useState(false);
-  
-  // Estados del formulario
+
   const [plantillaSeleccionada, setPlantillaSeleccionada] = useState('cortés');
   const [telefono, setTelefono] = useState('');
   const [nombre, setNombre] = useState('');
   const [monto, setMonto] = useState('');
   const [fecha, setFecha] = useState('');
   const [concepto, setConcepto] = useState('');
-  const [mensaje, setMensaje] = useState(plantillas.cortés);
-  
-  // Estado de clientes
+  const [mensaje, setMensaje] = useState(plantillas['cortés'].texto);
+
   const [clientes, setClientes] = useState([]);
   const [cargando, setCargando] = useState(true);
-  
-  // Estados para historial expandido
   const [historialExpandido, setHistorialExpandido] = useState({});
 
-  // Verificar si ya hay un código guardado
   useEffect(() => {
     const savedCode = localStorage.getItem('cobramatic_user_code');
     const hasSeenLanding = localStorage.getItem('cobramatic_seen_landing');
-    
     if (savedCode) {
       setUserCode(savedCode);
       setIsAuthenticated(true);
-      // Si ya vio el landing antes, saltarlo
       if (hasSeenLanding) {
         setMostrarLanding(false);
         setMostrarApp(true);
       }
     } else {
-      setCargando(false); // Si no hay código, dejar de cargar
+      setCargando(false);
     }
   }, []);
 
-  // Cargar clientes solo si está autenticado
   useEffect(() => {
     if (isAuthenticated && userCode) {
       cargarClientes();
     }
   }, [isAuthenticated, userCode]);
 
-  // Función para cargar clientes desde Supabase
   const cargarClientes = async () => {
     try {
       setCargando(true);
       const { data, error } = await supabase
         .from('clientes')
         .select('*')
-        .eq('user_code', userCode) // Filtrar por código de usuario
+        .eq('user_code', userCode)
         .order('created_at', { ascending: false });
-      
       if (error) throw error;
-      
       setClientes(data || []);
     } catch (error) {
       console.error('Error cargando clientes:', error);
@@ -102,13 +179,11 @@ function App() {
     }
   };
 
-  // Actualizar mensaje cuando cambia la plantilla
-  const handlePlantillaChange = (nuevaPlantilla) => {
-    setPlantillaSeleccionada(nuevaPlantilla);
-    setMensaje(plantillas[nuevaPlantilla]);
+  const handlePlantillaChange = (key) => {
+    setPlantillaSeleccionada(key);
+    setMensaje(plantillas[key].texto);
   };
 
-  // Generar preview del mensaje
   const generarPreview = () => {
     return mensaje
       .replace(/{nombre}/g, nombre || '{nombre}')
@@ -117,17 +192,14 @@ function App() {
       .replace(/{concepto}/g, concepto || '{concepto}');
   };
 
-  // Agregar nuevo cliente
   const agregarCliente = async (e) => {
     e.preventDefault();
-    
     if (!telefono || !nombre || !monto) {
       alert('Por favor completa al menos teléfono, nombre y monto');
       return;
     }
-    
     const nuevoCliente = {
-      user_code: userCode, // Asociar con el código del usuario
+      user_code: userCode,
       telefono,
       nombre,
       monto,
@@ -138,99 +210,63 @@ function App() {
       historial: [],
       pagado: false
     };
-    
     try {
       const { data, error } = await supabase
         .from('clientes')
         .insert([nuevoCliente])
         .select();
-      
       if (error) throw error;
-      
-      // Actualizar lista local
       setClientes([data[0], ...clientes]);
-      
-      // Limpiar formulario
       setTelefono('');
       setNombre('');
       setMonto('');
       setFecha('');
       setConcepto('');
-      setMensaje(plantillas[plantillaSeleccionada]);
+      setMensaje(plantillas[plantillaSeleccionada].texto);
     } catch (error) {
       console.error('Error agregando cliente:', error);
       alert('Error al agregar el cliente. Intenta de nuevo.');
     }
   };
 
-  // Enviar mensaje por WhatsApp
   const enviarWhatsApp = async (id) => {
     const cliente = clientes.find(c => c.id === id);
     if (!cliente) return;
-    
     const mensajePersonalizado = cliente.mensaje
       .replace(/{nombre}/g, cliente.nombre)
       .replace(/{monto}/g, cliente.monto)
       .replace(/{fecha}/g, cliente.fecha)
       .replace(/{concepto}/g, cliente.concepto);
-    
     const mensajeCodificado = encodeURIComponent(mensajePersonalizado);
     const url = `https://wa.me/${cliente.telefono}?text=${mensajeCodificado}`;
-    
-    // Registrar el envío
     const ahora = new Date();
-    const fecha = ahora.toLocaleDateString('es-ES');
+    const fechaHoy = ahora.toLocaleDateString('es-ES');
     const hora = ahora.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
-    
     const nuevoHistorial = [
-      { fecha, hora, timestamp: ahora.getTime() },
+      { fecha: fechaHoy, hora, timestamp: ahora.getTime() },
       ...(cliente.historial || [])
     ];
-    
     try {
       const { error } = await supabase
         .from('clientes')
-        .update({
-          enviados: cliente.enviados + 1,
-          historial: nuevoHistorial
-        })
+        .update({ enviados: cliente.enviados + 1, historial: nuevoHistorial })
         .eq('id', id);
-      
       if (error) throw error;
-      
-      // Actualizar estado local
-      setClientes(clientes.map(c => {
-        if (c.id === id) {
-          return {
-            ...c,
-            enviados: c.enviados + 1,
-            historial: nuevoHistorial
-          };
-        }
-        return c;
-      }));
-      
-      // Abrir WhatsApp
+      setClientes(clientes.map(c =>
+        c.id === id ? { ...c, enviados: c.enviados + 1, historial: nuevoHistorial } : c
+      ));
       window.open(url, '_blank');
     } catch (error) {
       console.error('Error registrando envío:', error);
-      // Abrir WhatsApp aunque falle el registro
       window.open(url, '_blank');
     }
   };
 
-  // Eliminar cliente
   const eliminarCliente = async (id) => {
     if (!confirm('¿Seguro que quieres eliminar este cliente?')) return;
-    
     try {
-      const { error } = await supabase
-        .from('clientes')
-        .delete()
-        .eq('id', id);
-      
+      const { error } = await supabase.from('clientes').delete().eq('id', id);
       if (error) throw error;
-      
       setClientes(clientes.filter(c => c.id !== id));
     } catch (error) {
       console.error('Error eliminando cliente:', error);
@@ -238,53 +274,32 @@ function App() {
     }
   };
 
-  // Marcar como pagado
   const marcarPagado = async (id) => {
     try {
-      const { error } = await supabase
-        .from('clientes')
-        .update({ pagado: true })
-        .eq('id', id);
-      
+      const { error } = await supabase.from('clientes').update({ pagado: true }).eq('id', id);
       if (error) throw error;
-      
-      setClientes(clientes.map(c => 
-        c.id === id ? { ...c, pagado: true } : c
-      ));
+      setClientes(clientes.map(c => c.id === id ? { ...c, pagado: true } : c));
     } catch (error) {
       console.error('Error marcando como pagado:', error);
       alert('Error al actualizar. Intenta de nuevo.');
     }
   };
 
-  // Desmarcar pagado
   const desmarcarPagado = async (id) => {
     try {
-      const { error } = await supabase
-        .from('clientes')
-        .update({ pagado: false })
-        .eq('id', id);
-      
+      const { error } = await supabase.from('clientes').update({ pagado: false }).eq('id', id);
       if (error) throw error;
-      
-      setClientes(clientes.map(c => 
-        c.id === id ? { ...c, pagado: false } : c
-      ));
+      setClientes(clientes.map(c => c.id === id ? { ...c, pagado: false } : c));
     } catch (error) {
       console.error('Error desmarcando pagado:', error);
       alert('Error al actualizar. Intenta de nuevo.');
     }
   };
 
-  // Toggle historial
   const toggleHistorial = (id) => {
-    setHistorialExpandido(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
+    setHistorialExpandido(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
-  // Cerrar sesión
   const handleLogout = () => {
     if (confirm('¿Seguro que quieres cerrar sesión?')) {
       localStorage.removeItem('cobramatic_user_code');
@@ -295,34 +310,26 @@ function App() {
     }
   };
 
-  // Manejar login
   const handleLogin = (code) => {
     setUserCode(code);
     setIsAuthenticated(true);
     setMostrarApp(true);
-    // Marcar que ya vio el landing
     localStorage.setItem('cobramatic_seen_landing', 'true');
   };
-  
-  // Manejar cuando hace clic en "Empezar" en el landing
+
   const handleIniciarDesdeLanding = () => {
     setMostrarLanding(false);
     localStorage.setItem('cobramatic_seen_landing', 'true');
   };
 
-  // FLUJO: Landing → Login → App
-  
-  // 1. Mostrar Landing primero (si no lo ha visto)
   if (mostrarLanding && !isAuthenticated) {
     return <Landing onIniciar={handleIniciarDesdeLanding} />;
   }
 
-  // 2. Mostrar Login (si no está autenticado y ya vio landing)
   if (!isAuthenticated) {
     return <Auth onLogin={handleLogin} />;
   }
 
-  // 3. Mostrar pantalla de carga (mientras carga datos)
   if (cargando) {
     return (
       <div className="container">
@@ -335,8 +342,6 @@ function App() {
     );
   }
 
-  // 4. Mostrar App principal
-
   return (
     <div className="container">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
@@ -344,25 +349,17 @@ function App() {
           <h1>💰 CobraMatic</h1>
           <p className="subtitle">Gestiona tus recordatorios de cobro por WhatsApp</p>
         </div>
-        <button 
+        <button
           onClick={handleLogout}
-          style={{
-            padding: '10px 20px',
-            background: '#f5f5f5',
-            border: '1px solid #ddd',
-            borderRadius: '8px',
-            cursor: 'pointer',
-            fontSize: '0.9em',
-            transition: 'background 0.2s'
-          }}
+          style={{ padding: '10px 20px', background: '#f5f5f5', border: '1px solid #ddd', borderRadius: '8px', cursor: 'pointer', fontSize: '0.9em', transition: 'background 0.2s' }}
           onMouseOver={(e) => e.target.style.background = '#e8e8e8'}
           onMouseOut={(e) => e.target.style.background = '#f5f5f5'}
         >
           🚪 Cerrar sesión
         </button>
       </div>
-      
-      {/* Dashboard de Métricas */}
+
+      {/* Dashboard */}
       {clientes.filter(c => !c.pagado).length > 0 && (
         <div className="dashboard">
           <div className="metrica-card">
@@ -372,7 +369,6 @@ function App() {
               <div className="metrica-label">Clientes Pendientes</div>
             </div>
           </div>
-          
           <div className="metrica-card">
             <div className="metrica-icon">💵</div>
             <div className="metrica-info">
@@ -380,24 +376,21 @@ function App() {
                 ${clientes
                   .filter(c => !c.pagado)
                   .reduce((total, c) => {
-                    const monto = c.monto.replace(/[^0-9]/g, '');
-                    return total + (parseInt(monto) || 0);
+                    const m = c.monto.replace(/[^0-9]/g, '');
+                    return total + (parseInt(m) || 0);
                   }, 0)
                   .toLocaleString('es-CO')}
               </div>
               <div className="metrica-label">Total Sin Cobrar</div>
             </div>
           </div>
-          
           <div className="metrica-card">
             <div className="metrica-icon">⚠️</div>
             <div className="metrica-info">
               <div className="metrica-numero">
                 {clientes.filter(c => {
                   if (c.pagado || !c.fecha) return false;
-                  const fechaVencimiento = new Date(c.fecha);
-                  const hoy = new Date();
-                  return fechaVencimiento < hoy;
+                  return new Date(c.fecha) < new Date();
                 }).length}
               </div>
               <div className="metrica-label">Cobros Vencidos</div>
@@ -405,7 +398,7 @@ function App() {
           </div>
         </div>
       )}
-      
+
       <div className="alerta">
         ℹ️ Tip: Usa las variables {'{nombre}'}, {'{monto}'}, {'{fecha}'}, {'{concepto}'} en tu mensaje y se reemplazarán automáticamente
       </div>
@@ -413,78 +406,41 @@ function App() {
       <form onSubmit={agregarCliente}>
         <div className="form-group">
           <label htmlFor="telefono">📱 Teléfono (con código de país, ej: 573001234567)</label>
-          <input 
-            type="tel" 
-            id="telefono" 
-            value={telefono}
-            onChange={(e) => setTelefono(e.target.value)}
-            placeholder="573001234567" 
-          />
+          <input type="tel" id="telefono" value={telefono} onChange={(e) => setTelefono(e.target.value)} placeholder="573001234567" />
         </div>
 
         <div className="form-group">
           <label htmlFor="nombre">👤 Nombre del Cliente</label>
-          <input 
-            type="text" 
-            id="nombre" 
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-            placeholder="Juan Pérez" 
-          />
+          <input type="text" id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Juan Pérez" />
         </div>
 
         <div className="form-group">
           <label htmlFor="monto">💵 Monto a Cobrar</label>
-          <input 
-            type="text" 
-            id="monto" 
-            value={monto}
-            onChange={(e) => setMonto(e.target.value)}
-            placeholder="$500,000 COP" 
-          />
+          <input type="text" id="monto" value={monto} onChange={(e) => setMonto(e.target.value)} placeholder="$500,000 COP" />
         </div>
 
         <div className="form-group">
           <label htmlFor="fecha">📅 Fecha de Vencimiento</label>
-          <input 
-            type="date" 
-            id="fecha" 
-            value={fecha}
-            onChange={(e) => setFecha(e.target.value)}
-          />
+          <input type="date" id="fecha" value={fecha} onChange={(e) => setFecha(e.target.value)} />
         </div>
 
         <div className="form-group">
           <label htmlFor="concepto">📝 Concepto del Cobro</label>
-          <input 
-            type="text" 
-            id="concepto" 
-            value={concepto}
-            onChange={(e) => setConcepto(e.target.value)}
-            placeholder="Servicio de consultoría" 
-          />
+          <input type="text" id="concepto" value={concepto} onChange={(e) => setConcepto(e.target.value)} placeholder="Servicio de consultoría" />
         </div>
 
         <div className="form-group">
           <label htmlFor="plantilla">📝 Plantilla de Mensaje</label>
-          <select 
-            id="plantilla" 
-            value={plantillaSeleccionada}
-            onChange={(e) => handlePlantillaChange(e.target.value)}
-          >
-            <option value="cortés">Cortés y Amable</option>
-            <option value="recordatorio">Recordatorio Estándar</option>
-            <option value="urgente">Urgente (Vencido)</option>
+          <select id="plantilla" value={plantillaSeleccionada} onChange={(e) => handlePlantillaChange(e.target.value)}>
+            {Object.entries(plantillas).map(([key, val]) => (
+              <option key={key} value={key}>{val.label}</option>
+            ))}
           </select>
         </div>
 
         <div className="form-group">
           <label htmlFor="mensaje">✉️ Mensaje Personalizado</label>
-          <textarea 
-            id="mensaje" 
-            value={mensaje}
-            onChange={(e) => setMensaje(e.target.value)}
-          />
+          <textarea id="mensaje" value={mensaje} onChange={(e) => setMensaje(e.target.value)} />
           <div className="variables">
             💡 Variables disponibles: {'{nombre}'}, {'{monto}'}, {'{fecha}'}, {'{concepto}'}
           </div>
@@ -504,22 +460,15 @@ function App() {
         <h2 style={{ marginTop: '40px', color: '#333', marginBottom: '20px' }}>
           📋 Clientes Pendientes
         </h2>
-        
+
         {clientes.length === 0 ? (
-          <p style={{ color: '#999', marginTop: '10px' }}>
-            No hay clientes agregados aún
-          </p>
+          <p style={{ color: '#999', marginTop: '10px' }}>No hay clientes agregados aún</p>
         ) : (
           clientes.map(cliente => (
-            <div 
-              key={cliente.id} 
-              className={`cliente-card ${cliente.pagado ? 'estado-pagado' : ''}`}
-            >
+            <div key={cliente.id} className={`cliente-card ${cliente.pagado ? 'estado-pagado' : ''}`}>
               <h3>
                 {cliente.nombre}
-                {cliente.pagado && (
-                  <span className="tag-pagado">✅ PAGADO</span>
-                )}
+                {cliente.pagado && <span className="tag-pagado">✅ PAGADO</span>}
                 {cliente.enviados > 0 && (
                   <span className="badge-enviados">
                     📤 {cliente.enviados} recordatorio{cliente.enviados > 1 ? 's' : ''} enviado{cliente.enviados > 1 ? 's' : ''}
@@ -530,40 +479,25 @@ function App() {
               <p><strong>💵 Monto:</strong> {cliente.monto}</p>
               <p><strong>📅 Vencimiento:</strong> {cliente.fecha}</p>
               <p><strong>📝 Concepto:</strong> {cliente.concepto}</p>
-              
+
               <div style={{ marginTop: '10px' }}>
                 {!cliente.pagado && (
-                  <button 
-                    className="btn-enviar" 
-                    onClick={() => enviarWhatsApp(cliente.id)}
-                  >
+                  <button className="btn-enviar" onClick={() => enviarWhatsApp(cliente.id)}>
                     📲 Enviar Recordatorio
                   </button>
                 )}
-                
-                <button 
-                  className="btn-marcar-pagado" 
-                  onClick={() => cliente.pagado ? desmarcarPagado(cliente.id) : marcarPagado(cliente.id)}
-                >
+                <button className="btn-marcar-pagado" onClick={() => cliente.pagado ? desmarcarPagado(cliente.id) : marcarPagado(cliente.id)}>
                   {cliente.pagado ? '↩️ Desmarcar Pagado' : '✅ Marcar como Pagado'}
                 </button>
-                
-                <button 
-                  className="btn-eliminar" 
-                  onClick={() => eliminarCliente(cliente.id)}
-                >
+                <button className="btn-eliminar" onClick={() => eliminarCliente(cliente.id)}>
                   🗑️ Eliminar
                 </button>
-                
+
                 {cliente.historial && cliente.historial.length > 0 && (
                   <>
-                    <button 
-                      className="toggle-historial" 
-                      onClick={() => toggleHistorial(cliente.id)}
-                    >
+                    <button className="toggle-historial" onClick={() => toggleHistorial(cliente.id)}>
                       👁️ {historialExpandido[cliente.id] ? 'Ocultar' : 'Ver'} Historial
                     </button>
-                    
                     {historialExpandido[cliente.id] && (
                       <div className="historial">
                         <strong>📋 Historial de Envíos:</strong>
