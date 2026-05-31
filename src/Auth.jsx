@@ -50,19 +50,41 @@ function Auth({ onLogin }) {
     onLogin(codigoGenerado);
   };
 
-  // Login con código existente
-  const handleLogin = (e) => {
-    e.preventDefault();
+ // Login con código existente
+const handleLogin = async (e) => {
+  e.preventDefault();
+  
+  if (!userCode.trim()) {
+    setError('Por favor ingresa tu código de acceso');
+    return;
+  }
+
+  try {
+    setError('');
     
-    if (!userCode.trim()) {
-      setError('Por favor ingresa tu código de acceso');
+    // ✅ Verificar que el código existe en Supabase
+    const { data, error: supabaseError } = await supabase
+      .from('clientes')
+      .select('user_code')
+      .eq('user_code', userCode.toUpperCase())
+      .limit(1);
+
+    if (supabaseError) throw supabaseError;
+
+    if (!data || data.length === 0) {
+      setError('Código no encontrado. Verifica e intenta de nuevo.');
       return;
     }
 
-    // Guardar y notificar al parent
+    // Solo entra si el código existe
     localStorage.setItem('cobramatic_user_code', userCode.toUpperCase());
     onLogin(userCode.toUpperCase());
-  };
+    
+  } catch (err) {
+    setError('Error al verificar el código. Intenta de nuevo.');
+    console.error(err);
+  }
+};
 
   return (
     <div className="auth-container">
