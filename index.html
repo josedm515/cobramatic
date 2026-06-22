@@ -1,87 +1,79 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+  <meta charset="UTF-8" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <link rel="apple-touch-icon" href="/logo.svg" />
-    
-    <!-- PWA Manifest -->
-   
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <link rel="apple-touch-icon" href="/logo.svg" />
 
-    <!-- Responsive -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO principal -->
-    <title>CobraMatic | Software Gratis de Cobranza por WhatsApp - Recordatorios Automáticos</title>
+  <!-- SEO principal -->
+  <title>CobraMatic | Software Gratis de Cobranza por WhatsApp - Recordatorios Automáticos</title>
+  <meta name="description" content="Software gratuito de cobranza por WhatsApp. Gestiona clientes, envía recordatorios profesionales de cobro y reduce la morosidad. Sin registro, sin tarjeta de crédito." />
+  <meta name="keywords" content="recordatorios cobro whatsapp, cobranza automatica, gestión pagos, software cobranza gratis, recordatorios pago, control deudores, cobro clientes, whatsapp business cobros, facturación colombia" />
 
-    <meta name="description" content="Software gratuito de cobranza automática por WhatsApp. Gestiona clientes, envía recordatorios profesionales y reduce la morosidad hasta 35%. Dashboard en tiempo real. Sin tarjeta de crédito." />
+  <!-- Autor y robots -->
+  <meta name="author" content="CobraMatic" />
+  <meta name="robots" content="index, follow" />
 
-    <meta name="keywords" content="recordatorios cobro whatsapp, cobranza automatica, gestión pagos, software cobranza, recordatorios pago automáticos, control deudores, cobro clientes, whatsapp business cobros" />
+  <!-- Canonical -->
+  <link rel="canonical" href="https://cobramatic-app.vercel.app/" />
 
-    <!-- Autor -->
-    <meta name="author" content="CobraMatic" />
+  <!-- Open Graph (Facebook / LinkedIn / WhatsApp preview) -->
+  <meta property="og:title" content="CobraMatic - Recordatorios de Cobro por WhatsApp" />
+  <meta property="og:description" content="Gestiona cobros y envía recordatorios automáticos por WhatsApp. Reduce la morosidad y cobra más rápido. Gratis." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cobramatic-app.vercel.app/" />
+  <meta property="og:image" content="https://cobramatic-app.vercel.app/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="CobraMatic - Sistema de recordatorios de cobro por WhatsApp" />
+  <meta property="og:site_name" content="CobraMatic" />
+  <meta property="og:locale" content="es_CO" />
 
-   
-    <meta name="robots" content="index, follow" />
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CobraMatic - Recordatorios de Cobro WhatsApp" />
+  <meta name="twitter:description" content="Automatiza tus cobros por WhatsApp. Gestiona clientes y pagos pendientes fácilmente. Gratis." />
+  <meta name="twitter:image" content="https://cobramatic-app.vercel.app/og-image.png" />
 
-    <!-- Canonical -->
-    <link rel="canonical" href="https://cobramatic-app.vercel.app/" />
+  <!-- Performance -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <!-- Open Graph (Facebook / LinkedIn / WhatsApp) -->
-    <meta property="og:title" content="CobraMatic - Recordatorios de Cobro por WhatsApp" />
-    <meta property="og:description" content="Gestiona cobros y envía recordatorios automáticos por WhatsApp. Reduce la morosidad y cobra más rápido." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://cobramatic-app.vercel.app/" />
-    <meta property="og:image" content="https://cobramatic-app.vercel.app/og-image.png" />
-    <meta property="og:site_name" content="CobraMatic" />
-    <meta property="og:locale" content="es_ES" />
+  <!-- Theme Color (PWA / mobile browser bar) -->
+  <meta name="theme-color" content="#667eea" />
 
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="CobraMatic - Recordatorios de Cobro WhatsApp" />
-    <meta name="twitter:description" content="Automatiza tus cobros por WhatsApp. Gestiona clientes y pagos pendientes fácilmente." />
-    <meta name="twitter:image" content="https://cobramatic-app.vercel.app/og-image.png" />
-
-    <!-- Performance -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#667eea" />
-    
-    <!-- Structured Data (Schema.org) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "CobraMatic",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "description": "Software gratuito de cobranza automática por WhatsApp. Gestiona clientes, envía recordatorios profesionales y reduce la morosidad.",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "ratingCount": "127"
-      },
-      "featureList": [
-        "Recordatorios automáticos por WhatsApp",
-        "Dashboard de métricas en tiempo real",
-        "Gestión de clientes y pagos",
-        "Plantillas de mensajes profesionales",
-        "Sincronización en la nube"
-      ]
-    }
-    </script>
-  </head>
-
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+  <!-- Structured Data (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CobraMatic",
+    "url": "https://cobramatic-app.vercel.app/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "inLanguage": "es",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Software gratuito de cobranza por WhatsApp. Gestiona clientes, envía recordatorios profesionales y reduce la morosidad.",
+    "featureList": [
+      "Recordatorios de cobro por WhatsApp",
+      "Gestión de clientes y pagos pendientes",
+      "Plantillas de mensajes profesionales",
+      "Historial de envíos",
+      "Sin registro requerido"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
 </html>
