@@ -1,4 +1,2 @@
 User-agent: *
-Allow: /
-
-Sitemap: https://cobramatic-app.vercel.app/sitemap.xml
+Disallow: /
